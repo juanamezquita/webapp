@@ -1,0 +1,32 @@
+
+<html>
+
+<head>
+    <title>Temperatura &amp; Humedad live data</title>
+    <script src="javascripts/jquery-2.1.4.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="javascripts/Chart.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="javascripts/index.js" type="text/javascript" charset="utf-8"></script>
+    <script src="javascripts/socket.io.js"></script>
+    <link href="stylesheets/style.css" rel="stylesheet" />
+</head>
+
+<body>
+  <!--  <canvas id="myChart" width="400" height="150"></canvas>-->
+  <div class="content">
+    <div class="wrapper col-2"><canvas id="chart-0"></canvas></div>
+    <div class="wrapper col-2"><canvas id="chart-1"></canvas></div>
+    <div class="botones">
+    <a class="button button__blue"  onclick='toggle()' >Activar</a>
+    </div>
+
+    </div>
+    <script>
+          var socket = io();
+          function toggle() {
+            socket.emit('toggle');
+                    }
+        </script>
+
+</body>
+
+</html>
