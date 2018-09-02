@@ -3,29 +3,113 @@
 
 <head>
     <title>Temperatura &amp; Humedad live data</title>
-    <script src="javascripts/jquery-2.1.4.min.js" type="text/javascript" charset="utf-8"></script>
+
+    <link href="stylesheets/style.css" rel="stylesheet" />
+    <link href="stylesheets/bootstrap.css" rel="stylesheet" />
+
+
+    <script src="javascripts/jquery-3.3.1.js" type="text/javascript" charset="utf-8"></script>
+    <script src="javascripts/popper.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="javascripts/bootstrap.js" type="text/javascript" charset="utf-8"></script>
     <script src="javascripts/Chart.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="javascripts/index.js" type="text/javascript" charset="utf-8"></script>
     <script src="javascripts/socket.io.js"></script>
-    <link href="stylesheets/style.css" rel="stylesheet" />
+    <script type="text/javascript">
+        $(document).ready(function(){
+
+            //ocultar grafica 1
+            $("#chart-1").hide();
+
+            //Acciones de botones
+            $("#btn1").click(function(){
+                $(".modal-body").html("Pulsó en el botón 1");
+                $(".modal").modal();
+            })
+            $("#btn2").click(function(){
+                $(".modal-body").html("Pulsó en el botón 2");
+                $(".modal").modal();
+            })
+            $("#btn3").click(function(){
+                $(".modal-body").html("Pulsó en el botón 3");
+                $(".modal").modal();
+            })            
+
+            //Acciones de menú pestañas
+            $("#grafica0").click(function(){
+                $("#grafica1").removeClass("active");
+                $("#grafica0").addClass("active");
+                $("#chart-1").hide();
+                $("#chart-0").show();
+            })
+            $("#grafica1").click(function(){
+                $("#grafica0").removeClass("active");
+                $("#grafica1").addClass("active");
+                $("#chart-0").hide();
+                $("#chart-1").show();
+            })            
+
+        }) 
+    </script>
+
 </head>
 
 <body>
   <!--  <canvas id="myChart" width="400" height="150"></canvas>-->
-  <div class="content">
-    <div class="wrapper col-2"><canvas id="chart-0"></canvas></div>
-    <div class="wrapper col-2"><canvas id="chart-1"></canvas></div>
-    <div class="botones">
-    <a class="button button__blue"  onclick='toggle()' >Activar</a>
-    </div>
+  <div class="content-fluid">
 
-    </div>
-    <script>
-          var socket = io();
-          function toggle() {
-            socket.emit('toggle');
-                    }
-        </script>
+
+    <div class="row">
+        <div class="col-sm-10 offset-sm-1">
+            <div class="card " >
+                <div class="card-header">
+                    <img class="card-img-top" src="img/Tecnoparque.png" alt="Card image cap">
+                </div>
+                <div class="card-body" >
+                    <div class="btn-group col-sm-12" role="group" aria-label="Basic example">
+                          <button type="button" id="btn1" class="btn btn-warning col-sm-4"><span class="glyphicon glyphicon-save"> Left</span></button>
+                          <button type="button" id="btn2" class="btn btn-info col-sm-4"><span class="glyphicon glyphicon-user"> Left</span></button>
+                          <button type="button" id="btn3" class="btn btn-success col-sm-4"><span class="glyphicon glyphicon-list"> Left</span></button>
+                    </div>
+                    <ul class="nav nav-tabs">
+                          <li class="nav-item">
+                            <a class="nav-link active" id="grafica0" href="#">GRÁFICA 1</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="grafica1" href="#">GRÁFICA 2</a>
+                        </li>
+                    </ul>
+
+                    <div class="wrapper "><canvas id="chart-0"></canvas></div>
+                    <div class="wrapper "><canvas id="chart-1"></canvas></div>
+                </div>
+        </div>
+</div>
+</div>
+
+</div>
+</div>
+
+
+
+<!-- Mensaje emergente -->
+<div class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">TÍTULO</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+      </button>
+  </div>
+  <div class="modal-body">
+    <p>Modal body text goes here.</p>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+</div>
+</div>
+</div>
+</div>
 
 </body>
 
